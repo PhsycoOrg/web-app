@@ -49,7 +49,7 @@
 <script lang="ts" setup>
   import type { Menu } from '~/interfaces/MenuInterface';
   import MenuItem from '~/components/layouts/app/SidebarMenuItem.vue';
-  import adminMenu from '~/data/AdminMenu';
+  import userMenu from '~/data/UserMenu';
 
   const isMenuShow = ref<boolean>(false);
 
@@ -63,7 +63,7 @@
     isMenuShow.value = false;
   })
 
-  const menuItems: Menu[] = adminMenu;
+  const menuItems: Menu[] = userMenu;
 </script>
 
 <style></style>

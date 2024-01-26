@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@fontsource/poppins": "^5.0.8",
+    "@headlessui/vue": "^1.7.17",
     "mitt": "^3.0.1"
   }
 }
