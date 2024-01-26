@@ -20,11 +20,17 @@ body {
 .btn-white {
     @apply inline-flex w-full justify-center items-center whitespace-nowrap rounded-md text-sm font-medium select-none border border-slate-300 bg-white hover:bg-slate-50 hover:text-black ring-offset-background shadow transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-100 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-60 h-10 px-4 py-2;
 }
-
 .app-sidebar {
     height: 100vh;
 }
 .app-sidebar .app-sidebar-menu {
     height: calc(100vh - 110px);
     min-height: calc(100vh - 110px);
+}
+.sidemenu-active {
+    @apply bg-slate-100;
+}
+.sidemenu-active span svg,
+.sidemenu-submenu-active {
+    @apply text-perfume-600;
 }

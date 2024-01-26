@@ -14,45 +14,31 @@
         <MenuItem v-for="menuItem in menuItems" :to="menuItem.to" :text="menuItem.text" :icon="menuItem.icon" :sub-menu="menuItem.subMenu" />
       </ul>
 
-      <ul class="w-full self-end">
+      <ul class="w-full self-end border-t border-slate-200 pt-6">
         <li class="flex items-center w-full h-10 text-sm hover:bg-slate-100 px-3 rounded-xl mb-3">
           <NuxtLink to="#" class="inline-flex items-center w-full h-full">
-            <svg width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-              stroke-linecap="round" stroke-linejoin="round" class="text-black mr-2">
-              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" />
-              <path d="M4 9h8" />
-              <path d="M12 15h8" />
-              <path d="M12 4v16" />
+            <svg class="text-black mr-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" /><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+              <path d="M15 15l3.35 3.35" />
+              <path d="M9 15l-3.35 3.35" />
+              <path d="M5.65 5.65l3.35 3.35" />
+              <path d="M18.35 5.65l-3.35 3.35" />
             </svg>
-            <span class="font-medium">Inicio</span>
+            <span class="font-medium">Ayuda</span>
           </NuxtLink>
         </li>
         <li class="flex items-center w-full h-10 text-sm hover:bg-slate-100 px-3 rounded-xl mb-3">
           <NuxtLink to="#" class="inline-flex items-center w-full h-full">
-            <svg width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-              stroke-linecap="round" stroke-linejoin="round" class="text-black mr-2">
-              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
-              <path d="M6 21v-2a4 4 0 0 1 4 -4h.5" />
-              <path
-                d="M18 22l3.35 -3.284a2.143 2.143 0 0 0 .005 -3.071a2.242 2.242 0 0 0 -3.129 -.006l-.224 .22l-.223 -.22a2.242 2.242 0 0 0 -3.128 -.006a2.143 2.143 0 0 0 -.006 3.071l3.355 3.296z" />
-            </svg>
-            <span class="font-medium">Especialistas</span>
+            <svg class="text-black mr-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 21v-13a3 3 0 0 1 3 -3h10a3 3 0 0 1 3 3v6a3 3 0 0 1 -3 3h-9l-4 4" />
+              <path d="M12 11l0 .01" /><path d="M8 11l0 .01" /><path d="M16 11l0 .01" /></svg>
+            <span class="font-medium">Feedback</span>
           </NuxtLink>
         </li>
         <li class="flex items-center w-full h-10 text-sm hover:bg-slate-100 px-3 rounded-xl mb-3">
           <NuxtLink to="#" class="inline-flex items-center w-full h-full">
-            <svg width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-              stroke-linecap="round" stroke-linejoin="round" class="text-black mr-2">
-              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path d="M4 5m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" />
-              <path d="M16 3l0 4" />
-              <path d="M8 3l0 4" />
-              <path d="M4 11l16 0" />
-              <path d="M8 15h2v2h-2z" />
-            </svg>
-            <span class="font-medium">Citas</span>
+            <svg class="text-black mr-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 11h18" /><path d="M5 11v-4a3 3 0 0 1 3 -3h8a3 3 0 0 1 3 3v4" />
+              <path d="M7 17m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /><path d="M17 17m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /><path d="M10 17h4" /></svg>
+            <span class="font-medium">Política de Privacidad</span>
           </NuxtLink>
         </li>
       </ul>
@@ -63,6 +49,7 @@
 <script lang="ts" setup>
   import type { Menu } from '~/interfaces/MenuInterface';
   import MenuItem from '~/components/layouts/app/SidebarMenuItem.vue';
+  import adminMenu from '~/data/AdminMenu';
 
   const isMenuShow = ref<boolean>(false);
 
@@ -76,72 +63,7 @@
     isMenuShow.value = false;
   })
 
-  const menuItems: Menu[] = [
-    {
-      text: 'Inicio',
-      icon: `<svg width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-              stroke-linecap="round" stroke-linejoin="round" class="text-black mr-2"><path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" />
-              <path d="M4 9h8" /><path d="M12 15h8" /><path d="M12 4v16" /></svg>`,
-      to: '/dashboard'
-    },
-    {
-      text: 'Citas',
-      to: '/citas',
-      icon: `<svg width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-              stroke-linecap="round" stroke-linejoin="round" class="text-black mr-2"><path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path d="M4 5m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" />
-              <path d="M16 3l0 4" /><path d="M8 3l0 4" /><path d="M4 11l16 0" /><path d="M8 15h2v2h-2z" /></svg>`,
-    },
-    {
-      text: 'Especialistas',
-      to: '/citas',
-      icon: `<svg width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-              stroke-linecap="round" stroke-linejoin="round" class="text-black mr-2"><path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" /><path d="M6 21v-2a4 4 0 0 1 4 -4h.5" />
-              <path
-                d="M18 22l3.35 -3.284a2.143 2.143 0 0 0 .005 -3.071a2.242 2.242 0 0 0 -3.129 -.006l-.224 .22l-.223 -.22a2.242 2.242 0 0 0 -3.128 -.006a2.143 2.143 0 0 0 -.006 3.071l3.355 3.296z" />
-            </svg>`,
-    },
-    {
-      text: 'SubMenu 1',
-      icon: `<svg width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-              stroke-linecap="round" stroke-linejoin="round" class="text-black mr-2"><path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" /><path d="M6 21v-2a4 4 0 0 1 4 -4h.5" />
-              <path
-                d="M18 22l3.35 -3.284a2.143 2.143 0 0 0 .005 -3.071a2.242 2.242 0 0 0 -3.129 -.006l-.224 .22l-.223 -.22a2.242 2.242 0 0 0 -3.128 -.006a2.143 2.143 0 0 0 -.006 3.071l3.355 3.296z" />
-            </svg>`,
-      subMenu: [
-        {
-          text: 'Submenu 1.1',
-          to: '/submenu-1'
-        },
-        {
-          text: 'Submenu 1.1',
-          to: '/submenu-1'
-        }
-      ]
-    },
-    {
-      text: 'SubMenu 2',
-      icon: `<svg width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-              stroke-linecap="round" stroke-linejoin="round" class="text-black mr-2"><path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" /><path d="M6 21v-2a4 4 0 0 1 4 -4h.5" />
-              <path
-                d="M18 22l3.35 -3.284a2.143 2.143 0 0 0 .005 -3.071a2.242 2.242 0 0 0 -3.129 -.006l-.224 .22l-.223 -.22a2.242 2.242 0 0 0 -3.128 -.006a2.143 2.143 0 0 0 -.006 3.071l3.355 3.296z" />
-            </svg>`,
-      subMenu: [
-        {
-          text: 'Submenu 2.1',
-          to: '/submenu-2'
-        },
-        {
-          text: 'Submenu 2.1',
-          to: '/submenu-2'
-        }
-      ]
-    }
-  ];
+  const menuItems: Menu[] = adminMenu;
 </script>
 
 <style></style>

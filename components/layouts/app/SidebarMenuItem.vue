@@ -1,6 +1,6 @@
 <template>
   <li v-if="subMenu == undefined" class="flex items-center w-full h-10 text-sm">
-    <NuxtLink activeClass="bg-slate-100" :to="to" class="px-3 inline-flex items-center w-full h-full hover:bg-slate-100 rounded-xl">
+    <NuxtLink activeClass="sidemenu-active" :to="to" class="px-3 inline-flex items-center w-full h-full hover:bg-slate-100 rounded-xl">
       <span v-html="icon"></span>
       <span class="font-medium">{{ text }}</span>
     </NuxtLink>
@@ -18,7 +18,7 @@
     
     <ul class="bg-white w-full py-2 pl-6 space-y-2 transform origin-top transition-all ease-in-out duration-300" :class="{'block': dropdownOpen, 'hidden': !dropdownOpen}">
       <li v-for="item in subMenu" class="px-4 py-2 text-sm hover:bg-slate-100 rounded-md">
-        <NuxtLink :to="item.to" class="inline-flex items-center w-full h-full">{{ item.text }}</NuxtLink>
+        <NuxtLink :to="item.to" active-class="sidemenu-submenu-active" class="inline-flex items-center w-full h-full">{{ item.text }}</NuxtLink>
       </li>
     </ul>
   </li>
