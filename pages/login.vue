@@ -17,7 +17,7 @@
     <div class="flex justify-end items-center my-6">
       <NuxtLink to="/forgot-password" class="text-perfume-600 hover:text-slate-600 text-sm font-medium">¿Olvidaste tu contraseña?</NuxtLink>
     </div>
-    <button class="btn-primary" :disabled="isButtonLoading">
+    <button class="btn-primary w-full" :disabled="isButtonLoading">
       <span v-if="isButtonLoading" class="flex">
         <svg class="motion-safe:animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
           <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -27,7 +27,7 @@
       </span>
       <span v-else>Ingresar</span>
     </button>
-    <button class="btn-white my-6">
+    <button class="btn-white w-full my-6">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 326667 333333" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd">
         <path d="M326667 170370c0-13704-1112-23704-3518-34074H166667v61851h91851c-1851 15371-11851 38519-34074 54074l-311 2071 49476 38329 3428 342c31481-29074 49630-71852 49630-122593m0 0z" fill="#4285f4"/>
         <path d="M166667 333333c44999 0 82776-14815 110370-40370l-52593-40742c-14074 9815-32963 16667-57777 16667-44074 0-81481-29073-94816-69258l-1954 166-51447 39815-673 1870c27407 54444 83704 91852 148890 91852z" fill="#34a853"/>

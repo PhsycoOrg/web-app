@@ -12,13 +12,16 @@ body {
     --tw-ring-offset-color: hsl(0 0% 100%);
 }
 .form-input {
-    @apply block w-full rounded-md border-0 px-3 py-2 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6;
+    @apply block w-full shadow-sm rounded-md border-0 px-3 py-2 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring focus:ring-slate-400 focus:ring-opacity-50 sm:text-sm sm:leading-6;
+}
+.form-label {
+    @apply block font-medium text-sm text-gray-700 mb-1;
 }
 .btn-primary {
-    @apply flex w-full justify-center rounded-md px-3 py-1.5 font-medium text-sm leading-6 whitespace-nowrap select-none bg-black text-white shadow hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:opacity-60 disabled:pointer-events-none;
+    @apply flex justify-center rounded-md px-3 py-1.5 font-medium text-sm leading-6 whitespace-nowrap select-none bg-black text-white shadow hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:opacity-60 disabled:pointer-events-none;
 }
 .btn-white {
-    @apply inline-flex w-full justify-center items-center whitespace-nowrap rounded-md text-sm font-medium select-none border border-slate-300 bg-white hover:bg-slate-50 hover:text-black ring-offset-background shadow transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-100 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-60 h-10 px-4 py-2;
+    @apply inline-flex justify-center items-center whitespace-nowrap rounded-md text-sm font-medium select-none border border-slate-300 bg-white hover:bg-slate-50 hover:text-black ring-offset-background shadow transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-100 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-60 h-10 px-4 py-2;
 }
 .app-sidebar {
     height: 100vh;
@@ -28,7 +31,7 @@ body {
     min-height: calc(100vh - 110px);
 }
 .sidemenu-active {
-    @apply bg-slate-100;
+    @apply bg-slate-50 border border-slate-200 font-semibold;
 }
 .sidemenu-active span svg,
 .sidemenu-submenu-active {

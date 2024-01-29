@@ -1,6 +1,6 @@
 <template>
   <li v-if="subMenu == undefined" class="flex items-center w-full h-10 text-sm">
-    <NuxtLink activeClass="sidemenu-active" :to="to" class="px-3 inline-flex items-center w-full h-full hover:bg-slate-100 rounded-xl">
+    <NuxtLink activeClass="sidemenu-active" :to="to" class="text-black px-3 inline-flex items-center w-full h-full hover:bg-slate-100 rounded-xl">
       <span v-html="icon"></span>
       <span class="font-medium">{{ text }}</span>
     </NuxtLink>
