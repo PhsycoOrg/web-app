@@ -59,5 +59,8 @@
   useHead({
     title: 'Panel - Physco'
   });
+
+  const user = useUser();
+  console.log(user, 'user');
 </script>
 <style></style>

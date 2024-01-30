@@ -14,7 +14,7 @@
         <button class="flex items-center outline-none gap-4 pr-2 text-sm transparent rounded-full focus:outline-none focus:bg-perfume-50 transition" :class="{'bg-perfume-50': isOpen}">
           <span class="flex items-center outline-none gap-3">
             <img class="h-8 w-8 rounded-full object-cover" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" />
-            Tim Cook
+            {{ user.name }}
           </span>
           <svg class="h-5 w-5" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 9l6 6l6 -6" /></svg>
@@ -32,8 +32,8 @@
         <div class="rounded-xl px-1.5 ring-1 ring-black ring-opacity-5 py-1.5 bg-white">
           <div class="flex flex-col items-center justify-center mb-2">
             <img class="h-20 w-20 rounded-full object-cover" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" />
-            <p class="text-sm mt-4 font-semiblod text-black">Tim Cook</p>
-            <p class="text-xs mb-2 text-gray-500">tim@apple.com</p>
+            <p class="text-sm mt-4 font-semiblod text-black">{{ user.name }}</p>
+            <p class="text-xs mb-2 text-gray-500">{{ user.email }}</p>
           </div>
           <hr class="my-2">
           <NuxtLink @click="closeDropdown" to="/user/profile" class="font-medium flex items-center rounded-xl cursor-pointer px-3 py-2 my-1 text-sm leading-5 text-black hover:bg-perfume-50 hover:text-perfume-700 focus:outline-none focus:bg-perfume-100 transition">
@@ -53,7 +53,7 @@
             Configuración
           </NuxtLink>
           <div class="border-t border-gray-100 my-1"></div>
-          <NuxtLink to="/login" class="font-medium flex items-center rounded-xl cursor-pointer px-3 py-2 my-1 text-sm leading-5 text-black hover:bg-perfume-50 hover:text-perfume-700 focus:outline-none focus:bg-perfume-100 transition">
+          <button @click="handleLogout" class="w-full font-medium flex items-center rounded-xl cursor-pointer px-3 py-2 my-1 text-sm leading-5 text-black hover:bg-perfume-50 hover:text-perfume-700 focus:outline-none focus:bg-perfume-100 transition">
             <svg class="mr-2 w-5 h-5" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.75" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
               <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
               <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
@@ -61,7 +61,7 @@
               <path d="M18 15l3 -3" />
             </svg>
             Cerrar Sesión
-          </NuxtLink>
+          </button>
         </div>
       </TransitionRoot>
     </div>
@@ -72,9 +72,16 @@
   import { TransitionRoot } from '@headlessui/vue'
   import useDetectOutsideClick from '~/composables/useDetectOutsideClick'
 
-  const { $event } = useNuxtApp()
+  const { $event } = useNuxtApp();
+  const { logout } = useAuth();
+
   const dropdownUserHeader = ref();
   const isOpen = ref<boolean>(false);
+  const user = useUser().getProfileInformation;
+
+  const handleLogout = (async () => {
+    await logout();
+  })
 
   const handleToggleMenu = (() => {
     $event('layout:show-sidebar', true)

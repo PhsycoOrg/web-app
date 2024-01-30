@@ -4,10 +4,11 @@ export const useAuth = () => {
   const { authentication } = useApi();
   const user = useUser();
 
-  const isAuthenticated = computed(() => user.value !== null);
+  const isAuthenticated = computed(() => user.isAuthenticated).value;
 
   async function fetchUser(): Promise<any> {
-      user.value = await authentication.user();
+    const userData = await authentication.user(); // Llamada asíncrona para obtener datos del usuario
+    user.setUserData(userData); // Almacenar datos en el store
   }
 
   async function login(
@@ -15,7 +16,7 @@ export const useAuth = () => {
       password: string,
       remember = true
   ): Promise<any> {
-      if (isAuthenticated.value === true) {
+      if (isAuthenticated === true) {
           return;
       }
 
@@ -43,12 +44,12 @@ export const useAuth = () => {
   }
 
   async function logout(): Promise<any> {
-      if (isAuthenticated.value === false) {
+      if (isAuthenticated === false) {
           return;
       }
 
       await authentication.logout();
-      user.value = null;
+      user.logout();
 
       await router.push(config.public.loginUrl);
   }

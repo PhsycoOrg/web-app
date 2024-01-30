@@ -2,9 +2,9 @@ export default defineNuxtRouteMiddleware(() => {
     const { isAuthenticated } = useAuth();
     const config = useRuntimeConfig();
 
-    console.log(isAuthenticated.value);
+    console.log(isAuthenticated);
 
-    if (isAuthenticated.value === true) {
+    if (isAuthenticated === true) {
         return navigateTo(config.public.homeUrl, { replace: true });
     }
 });

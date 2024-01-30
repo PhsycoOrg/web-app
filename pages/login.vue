@@ -48,7 +48,7 @@
 </template>
 
 <script lang="ts" setup>
-  import type { Login, LoginErrors } from '~/interfaces/AuthInterface';
+  import type { Login } from '~/interfaces/AuthInterface';
 
   definePageMeta({
     layout: 'auth',
@@ -59,7 +59,6 @@
   });
 
   const { login } = useAuth();
-  const config = useRuntimeConfig();
   const error = ref(null);
   const isButtonLoading = ref<boolean>(false);
 
@@ -68,6 +67,8 @@
     password: ""
   });
 
+  const user = useUser();
+
   async function submit() {
     isButtonLoading.value = true;
 
@@ -75,7 +76,7 @@
         error.value = null;
 
         await login(credentials.email, credentials.password, false);
-        navigateTo(config.public.homeUrl);
+        navigateTo('/dashboard');
     } catch (err: any) {
       error.value = err.errors;
     } finally {

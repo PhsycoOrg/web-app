@@ -13,8 +13,13 @@ export default defineNuxtConfig({
     },
   },
   modules: [
-    '@nuxtjs/tailwindcss'
+    '@nuxtjs/tailwindcss',
+    '@pinia/nuxt',
+    '@pinia-plugin-persistedstate/nuxt'
   ],
+  pinia: {
+    storesDirs: ['./stores/**'],
+  },
   runtimeConfig: {
       public: {
           baseUrl: "http://localhost:3000",
