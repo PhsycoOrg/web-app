@@ -50,7 +50,9 @@
                 <input id="email" type="email" class="form-input" autocomplete="off">
                 <!-- <p class="text-sm text-red-600 mt-2">Mensaje de error</p> -->
 
-                <div class="text-sm text-yellow-600 bg-yellow-50 p-2 border border-yellow-300 rounded-md mt-4 mb-2">Tú dirección de correo electrónico no está verificada.</div>
+                <div class="text-sm text-yellow-600 bg-yellow-50 p-2 border border-yellow-300 rounded-md mt-4 mb-2">
+                  Tú correo electrónico no está verificado.
+                </div>
                 <button type="button" class="bg-pear-400 py-1.5 px-4 my-2 rounded-md text-sm text-black hover:bg-pear-500 transition">
                     Haz clic aquí para volver a enviar el correo electrónico de verificación
                   </button>
@@ -68,7 +70,7 @@
       </div>
     </div>
   </div>
-  <div class="hidden sm:block">
+  <div class="block">
     <div class="py-4"></div>
   </div>
 
