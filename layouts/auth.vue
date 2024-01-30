@@ -10,7 +10,7 @@
       <blockquote class="text-3xl font-medium italic text-gray-600 mb-5">
         “{{ writingEffect }}”
       </blockquote>
-      <p class="font-medium text-las-palmas-500 mb-1">{{ currentQuote.author }}</p>
+      <p class="font-medium text-perfume-700 mb-1">{{ currentQuote.author }}</p>
     </div>
     <div class="w-full md:w-1/2 bg-white p-5 md:p-16 flex flex-col justify-center">
       <div class="w-full md:max-w-md mx-auto">

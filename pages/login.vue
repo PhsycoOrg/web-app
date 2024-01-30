@@ -1,17 +1,19 @@
 <template>
   <h2 class="text-4xl font-medium mb-2">Inicia Sesión</h2>
   <p class="text-gray-500 mb-8">¡Bienvenido de nuevo! Ingresa a tu espacio de bienestar emocional con nuestros psicólogos dedicados.</p>
-  <form>
+  <form @submit.prevent="submit">
     <div>
       <label for="email" class="text-black font-medium leading-6 text-sm block">Correo electrónico</label>
       <div class="mt-2">
-        <input class="form-input" placeholder="Correo electrónico" id="email" type="email" required autocomplete="off" />
+        <input v-model="credentials.email" class="form-input" placeholder="Correo electrónico" id="email" type="email" required autocomplete="off" />
+        <small class="text-red-600" v-if="error && error.email">{{ error.email[0] }}</small>
       </div>
     </div>
     <div class="my-6">
       <label for="password" class="text-black font-medium leading-6 text-sm block">Contraseña</label>
       <div class="mt-2">
-        <input class="form-input" placeholder="Contraseña" type="password" id="password" required />
+        <input v-model="credentials.password" class="form-input" placeholder="Contraseña" type="password" id="password" required />
+        <small class="text-red-600" v-if="error && error.password">{{ error.password[0] }}</small>
       </div>
     </div>
     <div class="flex justify-end items-center my-6">
@@ -46,15 +48,40 @@
 </template>
 
 <script lang="ts" setup>
-  definePageMeta({
-    layout: 'auth'
-  });
+  import type { Login, LoginErrors } from '~/interfaces/AuthInterface';
 
+  definePageMeta({
+    layout: 'auth',
+    middleware: ["guest"],
+  });
   useHead({
     title: 'Iniciar Sesión - Physco'
   });
 
+  const { login } = useAuth();
+  const config = useRuntimeConfig();
+  const error = ref(null);
   const isButtonLoading = ref<boolean>(false);
+
+  const credentials: Login = reactive({
+    email: "",
+    password: ""
+  });
+
+  async function submit() {
+    isButtonLoading.value = true;
+
+    try {
+        error.value = null;
+
+        await login(credentials.email, credentials.password, false);
+        navigateTo(config.public.homeUrl);
+    } catch (err: any) {
+      error.value = err.errors;
+    } finally {
+      isButtonLoading.value = false;
+    }
+}
 </script>
 
 <style>

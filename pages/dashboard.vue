@@ -52,7 +52,8 @@
 </template>
 <script lang="ts" setup>
   definePageMeta({
-    layout: 'app'
+    layout: 'app',
+    middleware: ["auth"],
   });
 
   useHead({
