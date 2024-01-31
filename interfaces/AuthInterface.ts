@@ -17,3 +17,16 @@ export interface ResetPassword {
     password_confirmation: string;
     token: string
 }
+
+export interface Register {
+    email: string;
+    password: string;
+    password_confirmation: string;
+    name: string
+}
+
+export interface AuthErrors {
+    name?: [];
+    email?: [];
+    password?: [];
+}

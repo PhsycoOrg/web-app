@@ -9,14 +9,14 @@
       <label for="email" class="text-black font-medium leading-6 text-sm block">Correo electrónico</label>
       <div class="mt-2">
         <input v-model="credentials.email" class="form-input" placeholder="Correo electrónico" id="email" type="email" required autocomplete="off" />
-        <small class="text-red-600" v-if="error && error.email">{{ error.email[0] }}</small>
+        <small v-if="errs && errs.email" v-for="error in errs.email" class="text-red-600" >{{ error }}</small>
       </div>
     </div>
     <div class="my-6">
       <label for="password" class="text-black font-medium leading-6 text-sm block">Contraseña</label>
       <div class="mt-2">
         <input v-model="credentials.password" class="form-input" placeholder="Contraseña" type="password" id="password" required />
-        <small class="text-red-600" v-if="error && error.password">{{ error.password[0] }}</small>
+        <small v-if="errs && errs.password" v-for="error in errs.password" class="text-red-600 block" >{{ error }}</small>
       </div>
     </div>
     <div class="flex justify-end items-center my-6">
@@ -51,7 +51,7 @@
 </template>
 
 <script lang="ts" setup>
-  import type { Login } from '~/interfaces/AuthInterface';
+  import type { AuthErrors, Login } from '~/interfaces/AuthInterface';
 
   definePageMeta({
     layout: 'auth',
@@ -61,9 +61,8 @@
     title: 'Iniciar Sesión - Physco'
   });
 
-  const { $listen } = useNuxtApp()
   const { login } = useAuth();
-  const error = ref(null);
+  const errs = ref<AuthErrors>({});
   const isButtonLoading = ref<boolean>(false);
   const statusMessage = ref('');
 
@@ -76,30 +75,15 @@
     isButtonLoading.value = true;
 
     try {
-        error.value = null;
-
-        await login(credentials.email, credentials.password, false);
-        navigateTo('/dashboard');
+      errs.value = {};
+      await login(credentials.email, credentials.password, false);
+      navigateTo('/dashboard');
     } catch (err: any) {
-      error.value = err.errors;
+      errs.value = err.errors;
     } finally {
       isButtonLoading.value = false;
     }
   }
-
-  const api = useApi();
-
-const {
-    pending,
-    data: response,
-    refresh
-} = await useLazyAsyncData("app", () => api.application.info());
-
-console.log(pending, response, ref)
-
-  $listen('auth:password-reset', (message: string) => {
-    statusMessage.value = message;
-  })
 </script>
 
 <style>
