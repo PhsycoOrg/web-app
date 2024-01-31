@@ -60,7 +60,12 @@
     title: 'Panel - Physco'
   });
 
-  const user = useUser();
-  console.log(user, 'user');
+  const router = useRoute();
+  const auth = useAuth();
+  const { verified } = router.query;
+
+  if (verified !== undefined && verified?.toString() == '1') {
+    auth.fetchUser();
+  }
 </script>
 <style></style>

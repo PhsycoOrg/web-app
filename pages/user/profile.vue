@@ -53,10 +53,11 @@
                 <div v-if="! profileInformation.emailVerified" class="text-sm text-yellow-600 bg-yellow-50 p-2 border border-yellow-300 rounded-md mt-4 mb-2">
                   Tú correo electrónico no está verificado.
                 </div>
-                <button v-if="! profileInformation.emailVerified" type="button" class="bg-pear-400 py-1.5 px-4 my-2 rounded-md text-sm text-black hover:bg-pear-500 transition">
+                <button v-if="! profileInformation.emailVerified && ! statusMessageEmailVerification" @click="handleSendVerificationEmail"
+                    type="button" class="bg-pear-400 py-1.5 px-4 my-2 rounded-md text-sm text-black hover:bg-pear-500 transition">
                     Haz clic aquí para volver a enviar el correo electrónico de verificación
                   </button>
-                <p class="mt-2 font-medium text-sm text-perfume-600">
+                <p v-if="statusMessageEmailVerification" class="mt-2 font-medium text-sm text-perfume-600">
                   Se ha enviado un nuevo enlace de verificación a su dirección de correo electrónico.
                 </p>
               </div>
@@ -129,9 +130,11 @@
   });
 
   const user = useUser();
+  const { authentication } = useApi();
   const photo = ref();
   const photoPreview = ref();
   const profileInformation: ProfileInformation = user.getProfileInformation;
+  const statusMessageEmailVerification = ref(null);
 
   const onFileChange = ((event: any) => {
     const file = event.target.files[0];
@@ -147,5 +150,11 @@
         console.log("Error ", error);
       };
   });
+
+  const handleSendVerificationEmail = (async () => {
+    await authentication.emailSendVerification().then((res) => {
+      statusMessageEmailVerification.value = res.status;
+    });
+  })
 </script>
 <style></style>

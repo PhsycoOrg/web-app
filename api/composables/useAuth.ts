@@ -53,6 +53,7 @@ export const useAuth = () => {
     return {
         user,
         isAuthenticated,
+        fetchUser,
         login,
         register,
         logout,
