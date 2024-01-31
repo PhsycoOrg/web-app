@@ -29,19 +29,14 @@ export default class AuthService extends ApiServiceBase {
         });
     }
 
-    async passwordForgot(email: string): Promise<any> {
+    async passwordForgot(email: string): Promise<{ status: string }> {
         return await this.call("/forgot-password", {
             method: "post",
             body: { email },
         });
     }
 
-    async passwordReset(
-        token: string,
-        email: string,
-        password: string,
-        password_confirmation: string
-    ): Promise<{ status: string }> {
+    async passwordReset( token: string, email: string, password: string, password_confirmation: string): Promise<{ status: string }> {
         return await this.call("/reset-password", {
             method: "post",
             body: { email, token, password, password_confirmation },

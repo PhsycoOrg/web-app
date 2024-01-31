@@ -10,3 +10,10 @@ export interface LoginErrors {
         password?: string[];
     };
 }
+
+export interface ResetPassword {
+    email: string;
+    password: string;
+    password_confirmation: string;
+    token: string
+}

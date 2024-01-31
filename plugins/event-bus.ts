@@ -2,7 +2,8 @@ import mitt from 'mitt';
 
 
 type ApplicationEvents = {
-  'layout:show-sidebar': boolean
+  'layout:show-sidebar': boolean,
+  'auth:password-reset': string
 };
 
 
