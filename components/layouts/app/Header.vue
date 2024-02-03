@@ -13,7 +13,7 @@
       <div @click="toggleDropdown">
         <button class="flex items-center outline-none gap-4 pr-2 text-sm transparent rounded-full focus:outline-none focus:bg-perfume-50 transition" :class="{'bg-perfume-50': isOpen}">
           <span class="flex items-center outline-none gap-3">
-            <img class="h-8 w-8 rounded-full object-cover" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" />
+            <img class="h-8 w-8 rounded-full object-cover" :src="user.photo" />
             {{ user.name }}
           </span>
           <svg class="h-5 w-5" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -31,7 +31,7 @@
         class="absolute z-50 mt-2 origin-top-right right-0 w-64 rounded-xl shadow-lg">
         <div class="rounded-xl px-1.5 ring-1 ring-black ring-opacity-5 py-1.5 bg-white">
           <div class="flex flex-col items-center justify-center mb-2">
-            <img class="h-20 w-20 rounded-full object-cover" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" />
+            <img class="h-20 w-20 rounded-full object-cover" :src="user.photo" />
             <p class="text-sm mt-4 font-semiblod text-black">{{ user.name }}</p>
             <p class="text-xs mb-2 text-gray-500">{{ user.email }}</p>
           </div>
@@ -77,7 +77,7 @@
 
   const dropdownUserHeader = ref();
   const isOpen = ref<boolean>(false);
-  const user = useUser().getProfileInformation;
+  const user = computed(() => useUser().getProfileInformation);
 
   const handleLogout = (async () => {
     await logout();

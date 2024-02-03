@@ -5,7 +5,9 @@
       <main class="flex-1 h-screen overflow-hidden overflow-y-auto">
         <Header />
         <section class="py-6 px-4 lg:px-12">
-          <slot />
+          <NotificationProvider>
+            <slot />
+          </NotificationProvider>
         </section>
       </main>
     </div>
@@ -18,6 +20,7 @@
   import '@fontsource/poppins/500.css';
   import '@fontsource/poppins/600.css';
 
+  import { NotificationProvider } from '~/components/Notification';
   import Sidebar from '~/components/layouts/app/Sidebar.vue';
   import Header from '~/components/layouts/app/Header.vue';
 </script>

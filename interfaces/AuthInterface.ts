@@ -29,4 +29,5 @@ export interface AuthErrors {
     name?: [];
     email?: [];
     password?: [];
+    new_password?: [];
 }

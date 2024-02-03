@@ -6,6 +6,7 @@ import type User from "../models/User";
 import type { ApiServiceContainer } from "../services/ApiServiceContainer";
 import ApplicationService from "../services/ApplicationService";
 import AuthenticationService from "../services/AuthenticationService";
+import ProfileService from "../services/ProfileService";
 
 const SECURE_METHODS = new Set(["post", "delete", "put", "patch"]);
 const UNAUTHENTICATED_STATUSES = new Set([401, 419]);
@@ -117,11 +118,9 @@ export default defineNuxtPlugin(async (nuxtApp) => {
         },
 
         async onResponseError({ response }) {
-            if (
-                apiConfig.redirectUnauthenticated &&
-                UNAUTHENTICATED_STATUSES.has(response.status)
-            ) {
-                await navigateTo(config.public.loginUrl);
+            if (UNAUTHENTICATED_STATUSES.has(response.status)) {
+                user.logout();
+                await navigateTo('/login');
 
                 return;
             }
@@ -146,6 +145,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     const api: ApiServiceContainer = {
         application: new ApplicationService(client),
         authentication: new AuthenticationService(client),
+        profile: new ProfileService(client)
     };
 
     if (process.server && user.value === null) {
