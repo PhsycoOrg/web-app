@@ -12,18 +12,15 @@
           <div class="px-4 py-5 sm:p-0 sm:rounded-tl-md sm:rounded-tr-md">
             <div class="grid grid-cols-6 gap-6">
               <div class="col-span-6 md:col-span-6 xl:col-span-4">
-                <!-- Profile Photo File Input -->
                 <input type="file" class="hidden" ref="photo" @change="onFileChange($event)" accept="image/*" />
                 <label class="block font-medium text-sm text-gray-700">Foto de Perfil</label>
 
-                <!-- Current Profile Photo -->
                 <div class="mt-2" v-show="! photoPreview">
                   <img
                     :src="profileInformation.photo"
                     alt="" class="rounded-full h-20 w-20 object-cover">
                 </div>
 
-                <!-- New Profile Photo Preview -->
                 <div class="mt-2" v-show="photoPreview" style="display: none;">
                   <span class="block rounded-full w-20 h-20 bg-cover bg-no-repeat bg-center"
                     :style="'background-image: url(\'' + photoPreview + '\');'">
@@ -44,19 +41,19 @@
                   </span>
                   <span v-else>Quitar foto</span>
                 </button>
-                <!-- <p class="text-sm text-red-600 mt-2">Mensaje de error</p> -->
-              </div>
-              <div class="col-span-6 md:col-span-6 xl:col-span-4">
-                <label for="name" class="form-label">Nombre</label>
-                <input v-model="profileInformation.name" id="name" type="text" class="form-input" autocomplete="off">
-                <!-- <p class="text-sm text-red-600 mt-2">Mensaje de error</p> -->
+                <small v-if="errs && errs.photo" v-for="error in errs.photo" class="text-red-600 block" >{{ error }}</small>
               </div>
 
-              <!-- Email -->
+              <div class="col-span-6 md:col-span-6 xl:col-span-4">
+                <label for="name" class="form-label">Nombre</label>
+                <input v-model="profileInformation.name" id="name" type="text" class="form-input" required autocomplete="off">
+                <small v-if="errs && errs.name" v-for="error in errs.name" class="text-red-600 block" >{{ error }}</small>
+              </div>
+
               <div class="col-span-6 md:col-span-6 xl:col-span-4">
                 <label for="email" class="form-label">Correo electrónico</label>
-                <input v-model="profileInformation.email" id="email" type="email" class="form-input" autocomplete="off">
-                <!-- <p class="text-sm text-red-600 mt-2">Mensaje de error</p> -->
+                <input v-model="profileInformation.email" id="email" type="email" class="form-input" required autocomplete="off">
+                <small v-if="errs && errs.email" v-for="error in errs.email" class="text-red-600 block" >{{ error }}</small>
 
                 <div v-if="! profileInformation.emailVerified" class="text-sm text-yellow-600 bg-yellow-50 p-2 border border-yellow-300 rounded-md mt-4 mb-2">
                   Tú correo electrónico no está verificado.
@@ -91,7 +88,7 @@
 </template>
 
 <script lang="ts" setup>
-  import type { AuthErrors } from '~/interfaces/AuthInterface';
+  import type { ProfileErrors } from '~/interfaces/AuthInterface';
   import type {ProfileInformation} from '~/interfaces/User/ProfileInterface';
 
   const user = useUser();
@@ -103,7 +100,7 @@
   const photoPreview = ref();
   const profileInformation: ComputedRef<ProfileInformation> = computed(() => user.getProfileInformation);
   const statusMessageEmailVerification = ref(null);
-  const errs = ref<AuthErrors>({});
+  const errs = ref<ProfileErrors>({});
   const isButtonLoading = ref<boolean>(false);
   const isDeletePhotoButtonLoading = ref<boolean>(false);
 

@@ -31,3 +31,9 @@ export interface AuthErrors {
     password?: [];
     new_password?: [];
 }
+
+export interface ProfileErrors {
+    name?: [];
+    email?: [];
+    photo?: [];
+}
