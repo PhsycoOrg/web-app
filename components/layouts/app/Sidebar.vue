@@ -49,11 +49,15 @@
 <script lang="ts" setup>
   import type { Menu } from '~/interfaces/MenuInterface';
   import MenuItem from '~/components/layouts/app/SidebarMenuItem.vue';
-  import userMenu from '~/data/UserMenu';
+  import { menus } from '~/data/Menu';
 
+  const user = useUser();
   const isMenuShow = ref<boolean>(false);
-
   const { $listen } = useNuxtApp()
+  
+  type ObjectKey = keyof typeof menus;
+  const role = user.getRole as ObjectKey;
+  const menuItems: Menu[] = menus[role];
 
   $listen('layout:show-sidebar', (isShowing: boolean) => {
     isMenuShow.value = isShowing;
@@ -62,8 +66,6 @@
   const handleHideMenu = (() => {
     isMenuShow.value = false;
   })
-
-  const menuItems: Menu[] = userMenu;
 </script>
 
 <style></style>

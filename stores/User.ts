@@ -15,6 +15,7 @@ export const useUserStore = defineStore('UserStore', {
     }),
     getters: {
         isAuthenticated: (state: User): boolean => state.email !== undefined,
+        getRole: (state: User): string => state.role??'user',
         getProfileInformation: (state: User) => {
             const data: ProfileInformation = {
                 email: state.email ?? '',

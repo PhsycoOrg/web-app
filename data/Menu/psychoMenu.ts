@@ -1,6 +1,6 @@
 import type { Menu } from '~/interfaces/MenuInterface';
 
-const pshycoMenu: Menu[] = [
+const psychoMenu: Menu[] = [
     {
         text: 'Inicio',
         icon: `<svg width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
@@ -44,4 +44,4 @@ const pshycoMenu: Menu[] = [
     },
 ];
 
-export default pshycoMenu;
+export default psychoMenu;
