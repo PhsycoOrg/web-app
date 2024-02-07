@@ -5,28 +5,28 @@
     <div>
       <label for="name" class="text-black font-medium leading-6 text-sm block">Nombre</label>
       <div class="mt-2">
-        <input v-model="data.name" class="form-input" placeholder="Nombre" type="text" id="name" required  autocomplete="off" />
+        <input v-model="data.name" class="form-input w-full" placeholder="Nombre" type="text" id="name" required  autocomplete="off" />
         <small v-if="errs && errs.name" v-for="error in errs.name" class="text-red-600" >{{ error }}</small>
       </div>
     </div>
     <div class="my-4">
       <label for="email" class="text-black font-medium leading-6 text-sm block">Correo electrónico</label>
       <div class="mt-2">
-        <input v-model="data.email" class="form-input" placeholder="Correo electrónico" type="email" id="email" required autocomplete="off" />
+        <input v-model="data.email" class="form-input w-full" placeholder="Correo electrónico" type="email" id="email" required autocomplete="off" />
         <small v-if="errs && errs.email" v-for="error in errs.email" class="text-red-600" >{{ error }}</small>
       </div>
     </div>
     <div class="my-4">
       <label for="password" class="text-black font-medium leading-6 text-sm block">Contraseña</label>
       <div class="mt-2">
-        <input v-model="data.password" class="form-input" placeholder="Contraseña" type="password" id="password" required autocomplete="off" />
+        <input v-model="data.password" class="form-input w-full" placeholder="Contraseña" type="password" id="password" required autocomplete="off" />
         <small v-if="errs && errs.password" v-for="error in errs.password" class="text-red-600 block" >{{ error }}</small>
       </div>
     </div>
     <div class="my-4">
       <label for="conf-password" class="text-black font-medium leading-6 text-sm block">Confirmar Contraseña</label>
       <div class="mt-2">
-        <input v-model="data.password_confirmation" class="form-input" placeholder="Confirmar Contraseña" type="password" id="conf-password" required autocomplete="off" />
+        <input v-model="data.password_confirmation" class="form-input w-full" placeholder="Confirmar Contraseña" type="password" id="conf-password" required autocomplete="off" />
       </div>
     </div>
     <button class="btn-primary w-full" :disabled="isButtonLoading">

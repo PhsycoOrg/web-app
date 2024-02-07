@@ -14,20 +14,20 @@
               
               <div class="col-span-6 md:col-span-6 xl:col-span-4">
                 <label for="current-password" class="form-label">Contraseña actual</label>
-                <input v-model="data.password" id="current-password" type="password" class="form-input" autocomplete="off">
+                <input v-model="data.password" id="current-password" type="password" class="form-input w-full" autocomplete="off">
                 <small v-if="errs && errs.password" v-for="error in errs.password" class="text-red-600 block" >{{ error }}</small>
               </div>
 
               <!-- Email -->
               <div class="col-span-6 md:col-span-6 xl:col-span-4">
                 <label for="new-password" class="form-label">Nueva Contraseña</label>
-                <input v-model="data.new_password" id="new-password" type="password" class="form-input" autocomplete="off">
+                <input v-model="data.new_password" id="new-password" type="password" class="form-input w-full" autocomplete="off">
                 <small v-if="errs && errs.new_password" v-for="error in errs.new_password" class="text-red-600 block" >{{ error }}</small>
               </div>
 
               <div class="col-span-6 md:col-span-6 xl:col-span-4">
                 <label for="confirm-password" class="form-label">Confirmar Contraseña</label>
-                <input v-model="data.new_password_confirmation" id="confirm-password" type="password" class="form-input" autocomplete="off">
+                <input v-model="data.new_password_confirmation" id="confirm-password" type="password" class="form-input w-full" autocomplete="off">
               </div>
             </div>
           </div>

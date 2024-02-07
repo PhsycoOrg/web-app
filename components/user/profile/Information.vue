@@ -46,13 +46,13 @@
 
               <div class="col-span-6 md:col-span-6 xl:col-span-4">
                 <label for="name" class="form-label">Nombre</label>
-                <input v-model="profileInformation.name" id="name" type="text" class="form-input" required autocomplete="off">
+                <input v-model="profileInformation.name" id="name" type="text" class="form-input w-full" required autocomplete="off">
                 <small v-if="errs && errs.name" v-for="error in errs.name" class="text-red-600 block" >{{ error }}</small>
               </div>
 
               <div class="col-span-6 md:col-span-6 xl:col-span-4">
                 <label for="email" class="form-label">Correo electrónico</label>
-                <input v-model="profileInformation.email" id="email" type="email" class="form-input" required autocomplete="off">
+                <input v-model="profileInformation.email" id="email" type="email" class="form-input w-full" required autocomplete="off">
                 <small v-if="errs && errs.email" v-for="error in errs.email" class="text-red-600 block" >{{ error }}</small>
 
                 <div v-if="! profileInformation.emailVerified" class="text-sm text-yellow-600 bg-yellow-50 p-2 border border-yellow-300 rounded-md mt-4 mb-2">
@@ -158,7 +158,7 @@
       photoPreview.value = null;
       notification.add('Perfil actualizado', 'Se quitó la foto de tu perfil correctamente.', 'success', true);
     } catch (err: any) {
-      notification.add('Perfil actualizado', 'No se puedo quitar la foto de tu perfil.', 'error', true);
+      notification.add('Error al actualizar tu perfil', 'No se puedo quitar la foto de tu perfil.', 'error', true);
     } finally {
       isDeletePhotoButtonLoading.value = false;
     }

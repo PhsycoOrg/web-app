@@ -36,7 +36,7 @@ export default class AuthService extends ApiServiceBase {
         });
     }
 
-    async passwordReset( token: string, email: string, password: string, password_confirmation: string): Promise<{ status: string }> {
+    async passwordReset(token: string, email: string, password: string, password_confirmation: string): Promise<{ status: string }> {
         return await this.call("/reset-password", {
             method: "post",
             body: { email, token, password, password_confirmation },

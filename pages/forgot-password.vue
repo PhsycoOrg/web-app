@@ -8,7 +8,7 @@
     <div>
       <label for="email" class="text-black font-medium leading-6 text-sm block">Correo electrónico</label>
       <div class="mt-2">
-        <input v-model="email" class="form-input" placeholder="Correo electrónico" id="email" type="email" required autocomplete="off" />
+        <input v-model="email" class="form-input w-full" placeholder="Correo electrónico" id="email" type="email" required autocomplete="off" />
         <small class="text-red-600" v-if="error">{{ error }}</small>
       </div>
     </div>

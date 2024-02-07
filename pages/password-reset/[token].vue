@@ -8,19 +8,19 @@
     <div>
       <label for="email" class="text-black font-medium leading-6 text-sm block">Correo electrónico</label>
       <div class="mt-2">
-        <input v-model="data.email" class="form-input" placeholder="Correo electrónico" id="email" type="email" required autocomplete="off" :disabled="data.email != ''" />
+        <input v-model="data.email" class="form-input w-full" placeholder="Correo electrónico" id="email" type="email" required autocomplete="off" :disabled="data.email != ''" />
       </div>
     </div>
     <div class="my-4">
       <label for="password" class="text-black font-medium leading-6 text-sm block">Contraseña</label>
       <div class="mt-2">
-        <input v-model="data.password" class="form-input" placeholder="Contraseña" type="password" id="password" required autocomplete="off" />
+        <input v-model="data.password" class="form-input w-full" placeholder="Contraseña" type="password" id="password" required autocomplete="off" />
       </div>
     </div>
     <div class="my-4">
       <label for="conf-password" class="text-black font-medium leading-6 text-sm block">Confirmar Contraseña</label>
       <div class="mt-2">
-        <input v-model="data.password_confirmation" class="form-input" placeholder="Confirmar Contraseña" type="password" id="conf-password" required autocomplete="off" />
+        <input v-model="data.password_confirmation" class="form-input w-full" placeholder="Confirmar Contraseña" type="password" id="conf-password" required autocomplete="off" />
       </div>
     </div>
     <button class="btn-primary w-full my-6" :disabled="isButtonLoading">

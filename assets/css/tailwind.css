@@ -12,7 +12,7 @@ body {
     --tw-ring-offset-color: hsl(0 0% 100%);
 }
 .form-input {
-    @apply block w-full shadow-sm rounded-md border-0 px-3 py-2 text-gray-900 ring-1 ring-inset 
+    @apply block shadow-sm rounded-md border-0 px-3 py-2 text-gray-900 ring-1 ring-inset 
             ring-gray-300 placeholder:text-gray-400 focus:ring focus:ring-slate-400 
             focus:ring-opacity-50 sm:text-sm sm:leading-6 
             disabled:bg-slate-50 disabled:cursor-not-allowed disabled:pointer-events-none disabled:select-none;

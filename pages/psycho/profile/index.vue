@@ -68,27 +68,6 @@
             <hr class="w-full h-px border-neutral-200">
             <div class="block lg:flex gap-6">
               <div class="mt-7 w-full lg:w-1/2">
-                <h2 class="leading-7 font-medium text-base text-black">Preferencias</h2>
-                <p class="leading-6 text-sm text-gray-500">Consulta las preferencias y ajustes de tu psicólogo</p>
-                <ul role="list" class="leading-6 text-sm border-t border-gray-200	mt-6 divide-y divide-gray-100">
-                  <li class="py-3 gap-x-6 justify-between items-center flex">
-                    <div class="font-medium">Anticipación para agendar</div>
-                    <p class="text-perfume-700">24 horas</p>
-                  </li>
-                  <li class="py-3 gap-x-6 justify-between items-center flex">
-                    <div class="font-medium">Confirmación automática de cita</div>
-                    <div class="text-perfume-700">Sí</div>
-                  </li>
-                  <li class="py-3 gap-x-6 justify-between items-center flex">
-                    <div class="font-medium">Duración de Sesiones</div>
-                    <div class="text-perfume-700 text-right">
-                      <p>30 minutos</p>
-                      <p>1 hora</p>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-              <div class="mt-7 w-full lg:w-1/2">
                 <h2 class="leading-7 font-medium text-base text-black">Horario Disponible</h2>
                 <p class="leading-6 text-sm text-gray-500">Descubre cuándo tu psicólogo está disponible para citas</p>
                 <ul role="list" class="leading-6 text-sm border-t border-gray-200	mt-6 divide-y divide-gray-100">
