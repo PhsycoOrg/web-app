@@ -266,7 +266,6 @@
     return status;
   };
 
-
   const handleUpdateProfile = (async () => {
     errs.value = {
       title_specializations: [],
@@ -296,7 +295,7 @@
 
       await api.application.updateProfessionalProfileData(formData.title_specializations, formData.license_number as number,
              formData.specialization as string, formDataCategories);
-             
+
       navigateTo('/psycho/profile');
 
       notification.add('Perfil actualizado', 'Se actualizó la información de tu perfile profesional correctamente.', 'success', true);
