@@ -1,15 +1,15 @@
 <template>
   <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-    <div class="col-span-2">
+    <div class="col-span-2 relative">
       <h2 class="text-xl font-semibold">Perfil Profesional</h2>
-      <p class="text-sm">This information will be displayed publicly so be careful what you share.</p>
+      <p class="text-sm"></p>
+      <PageLoader v-if="isDataLoading" text="Obteniendo la información de tu Perfil" />
       <div class="mt-4 grid grid-cols-1 gap-6">
         <div class="bg-white border border-slate-200 p-4 rounded-lg">
           <div class="p-3 pt-3 lg:px-9 lg:pt-9 flex-auto min-h-[70px] pb-0 bg-transparent">
             <div class="flex flex-wrap mb-6 xl:flex-nowrap">
               <div class="relative inline-block shrink-0 rounded-2xl mb-5 mr-5 w-20 h-20 lg:w-40 lg:h-40">
-                <img class="inline-block shrink-0 rounded-2xl w-full h-full"
-                  src="https://raw.githubusercontent.com/Loopple/loopple-public-assets/main/riva-dashboard-tailwind/img/avatars/avatar1.jpg"
+                <img class="inline-block shrink-0 rounded-2xl w-full h-full object-cover" :src="profile_photo_url"
                   alt="image" />
               </div>
               <div class="grow">
@@ -17,7 +17,7 @@
                   <div class="flex flex-col">
                     <div class="flex items-center mb-2">
                       <p class="text-secondary-inverse font-semibold text-[1.5rem] mr-1">
-                        Alec Jhonson
+                        {{ name }}
                       </p>
                       <span title="Perfil Verificado">
                         <svg viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-purple-700">
@@ -28,11 +28,11 @@
                       </span>
                     </div>
                     <div class="pr-2 mb-4">
-                      <p class="font-medium text-secondary-dark">
-                        Titulo especialidades
+                      <p class="text-secondary-dark text-base mb-4">
+                        C.P.P: # {{ professionalData.license_number }}
                       </p>
-                      <p class="text-secondary-dark text-base">
-                        C.P.P: # 12345
+                      <p class="font-medium text-secondary-dark">
+                        {{ professionalData.title_specializations }}
                       </p>
                     </div>
                   </div>
@@ -42,25 +42,18 @@
                     </NuxtLink>
                   </div>
                 </div>
-                <div class="flex flex-wrap justify-between">
-                  <div class="flex flex-wrap items-center">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam officiis iusto cum. Odit magni
-                    voluptatem necessitatibus, laudantium, quam, est maxime consectetur deserunt laboriosam ad nihil
-                    perspiciatis ab incidunt ipsum ullam.
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolores veritatis officiis nisi quos placeat
-                    quia repudiandae hic autem. Maxime dicta ad sit assumenda perferendis, dolorem id earum doloribus
-                    ducimus corporis!
+                <div class="flex flex-wrap w-full ">
+                  <div class="flex flex-wrap items-center w-full">
+                    {{ professionalData.specialization }}
                   </div>
-                  <div class="flex flex-wrap items-center mt-4">
-                    <a href="javascript:void(0)" v-for="n in 15"
-                      class="mr-3 mb-2 inline-flex items-center justify-center text-secondary-inverse rounded-full bg-neutral-100 hover:bg-neutral-200 transition-all duration-200 ease-in-out px-3 py-1 text-sm font-medium leading-normal">
-                      Following </a>
-                    <a href="javascript:void(0)"
-                      class="mr-3 mb-2 inline-flex items-center justify-center text-secondary-inverse rounded-full bg-neutral-100 hover:bg-neutral-200 transition-all duration-200 ease-in-out px-3 py-1 text-sm font-medium leading-normal">
-                      Followers </a>
-                    <a href="javascript:void(0)"
-                      class="mr-3 mb-2 inline-flex items-center justify-center text-secondary-inverse rounded-full bg-neutral-100 hover:bg-neutral-200 transition-all duration-200 ease-in-out px-3 py-1 text-sm font-medium leading-normal">
-                      Deals </a>
+                  <div class="flex flex-wrap items-center w-full mt-4">
+                    <label for="categories" class="text-black block font-medium leading-6 text-[16px] w-full mb-4 items-center">
+                      Experiencia en tratamientos específicos:
+                    </label>
+                    <span v-for="(item, index) in professionalData.categories"
+                        class="select-none mr-3 mb-2 inline-flex items-center justify-center text-secondary-inverse rounded-full bg-neutral-100 hover:bg-neutral-200 transition-all duration-200 ease-in-out px-3 py-1 text-sm font-medium leading-normal">
+                        {{ item.name }}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -131,6 +124,9 @@
 </template>
 
 <script lang="ts" setup>
+  import type { ProfessionalData } from '@/interfaces/Psycho/ProfessionalData';
+  import PageLoader from '@/components/loaders/PageLoader.vue';
+
   definePageMeta({
     layout: 'app',
     middleware: ['auth', 'psycho'],
@@ -138,6 +134,28 @@
 
   useHead({
     title: 'Perfil Profesional - Physco'
+  });
+
+  const { getProfessionalProfileData } = useApi();
+  const user = useUser();
+  const { name, profile_photo_url } = user;
+  const isDataLoading = ref<boolean>(false);
+  const professionalData = ref<ProfessionalData>({
+    title_specializations: '',
+    license_number: null,
+    specialization: null,
+    categories: [],
+  });
+
+  onMounted(() => {
+    getProfessionalData();
+  });
+
+  const getProfessionalData = (async () => {
+    isDataLoading.value = true;
+    const response = await getProfessionalProfileData();
+    professionalData.value = response.data;
+    isDataLoading.value = false;
   });
 </script>
 
