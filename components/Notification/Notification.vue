@@ -13,7 +13,7 @@
 </script>
 
 <template>
-  <div class="bg-white shadow shadow-slate-50 rounded-lg pointer-events-auto">
+  <div class="bg-white shadow shadow-slate-50 rounded-lg pointer-events-auto z-20">
     <div class="rounded-lg shadow-lg overflow-hidden">
       <div class="p-4">
         <div class="flex items-start">

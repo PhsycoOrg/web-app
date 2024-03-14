@@ -4,7 +4,7 @@
 </script>
 
 <template>
-  <div class="fixed inset-0 flex items-start justify-end px-4 py-6 sm:p-6 sm:pt-16 pointer-events-none">
+  <div class="fixed inset-0 flex items-start justify-end px-4 py-6 sm:p-6 sm:pt-16 pointer-events-none z-50">
     <div class="max-w-sm w-full">
       <TransitionGroup
         appear
