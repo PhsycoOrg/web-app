@@ -88,13 +88,13 @@
 </template>
 
 <script lang="ts" setup>
-  import type { ProfileErrors } from '~/interfaces/AuthInterface';
-  import type {ProfileInformation} from '~/interfaces/User/ProfileInterface';
+  import type { ProfileErrors } from '@/interfaces/AuthInterface';
+  import type {ProfileInformation} from '@/interfaces/User/ProfileInterface';
 
   const user = useUser();
-  const { authentication } = useApi();
+  const { emailSendVerification } = useApi();
   const { fetchUser } = useAuth();
-  const api = useApi();
+  const { updateProfile, deleteProfilePhoto } = useApi();
   const notification = useNotification();
   const photo = ref();
   const photoPreview = ref();
@@ -119,25 +119,26 @@
   });
 
   const handleSendVerificationEmail = (async () => {
-    await authentication.emailSendVerification().then((res) => {
+    await emailSendVerification().then((res) => {
       statusMessageEmailVerification.value = res.status;
     });
   })
 
   const handleUpdateProfile = (async () => {
-    const file = photo.value.files[0];
-    const formData = new FormData();
-    if (file) {
-      formData.append('photo', file);
-    }
-    formData.append('name', profileInformation.value.name);
-    formData.append('email', profileInformation.value.email);
-
     try {
+      const file = photo.value.files[0];
+      
+      const formData = new FormData();
+      if (file) {
+        formData.append('photo', file);
+      }
+      formData.append('name', profileInformation.value.name);
+      formData.append('email', profileInformation.value.email);
+    
       isButtonLoading.value = true;
       errs.value = {};
 
-      await api.profile.updateProfile(formData); 
+      await updateProfile(formData); 
       await fetchUser();
       photoPreview.value = null;
       notification.add('Perfil actualizado', 'Se actualizó la información de tu perfil correctamente.', 'success', true);
@@ -153,7 +154,7 @@
       isDeletePhotoButtonLoading.value = true;
       errs.value = {};
 
-      await api.profile.deleteProfilePhoto(); 
+      await deleteProfilePhoto(); 
       await fetchUser();
       photoPreview.value = null;
       notification.add('Perfil actualizado', 'Se quitó la foto de tu perfil correctamente.', 'success', true);

@@ -165,7 +165,7 @@
   
 <script lang="ts" setup>
 import { Switch, Listbox, ListboxButton, ListboxOptions, ListboxOption } from '@headlessui/vue';
-import type { ProfessionalConfig } from '~/interfaces/Psycho/Schedule';
+import type { ProfessionalConfig } from '@/interfaces/Psycho/Schedule';
 
 definePageMeta({
   layout: 'app',

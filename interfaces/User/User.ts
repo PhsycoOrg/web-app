@@ -1,6 +1,7 @@
 export default interface User {
-    name: string;
     id?: string;
+    token?: string,
+    name: string;
     email?: string;
     email_verified_at?: Date;
     profile_photo_url?: string;

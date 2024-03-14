@@ -172,9 +172,9 @@
 </template>
 
 <script lang="ts" setup>
-  import type { Category, ProfessionalData } from '~/interfaces/Psycho/ProfessionalData';
+  import type { Category, ProfessionalData } from '@/interfaces/Psycho/ProfessionalData';
   import { Listbox, ListboxButton, ListboxOptions, ListboxOption } from '@headlessui/vue';
-  import type { PsychoProfileError } from '~/interfaces/Errors';
+  import type { PsychoProfileError } from '@/interfaces/Errors';
 
   definePageMeta({
     layout: 'app',
@@ -185,7 +185,7 @@
     title: 'Editar Perfil Profesional - Physco'
   });
 
-  const api = useApi();
+  const { updateProfessionalProfileData, getCategories, getProfessionalProfileData } = useApi();
   const user = useUser();
   const notification = useNotification();
 
@@ -207,18 +207,18 @@
   });
 
   onMounted(() => {
-    getCategories();
+    getCategoriesData();
     getProfessionalData();
   })
 
-  const getCategories = (async () => {
-    const response = await api.application.getCategories();
-    categories.value = response;
+  const getCategoriesData = (async () => {
+    const response = await getCategories();
+    categories.value = response.data;
   });
 
   const getProfessionalData = (async () => {
-    const response = await api.application.getProfessionalProfileData();
-      professionalData.value = response;
+    const response = await getProfessionalProfileData();
+      professionalData.value = response.data;
   });
 
   const handleAddCategory = ((category: Category) => {
@@ -293,7 +293,7 @@
       const formData = professionalData.value;
       const formDataCategories = formData.categories.map(category => category.id);
 
-      await api.application.updateProfessionalProfileData(formData.title_specializations, formData.license_number as number,
+      await updateProfessionalProfileData(formData.title_specializations, formData.license_number as number,
              formData.specialization as string, formDataCategories);
 
       navigateTo('/psycho/profile');

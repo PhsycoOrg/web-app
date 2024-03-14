@@ -1,25 +1,24 @@
+import apiAxios from "@/services/api";
 export const useAuth = () => {
     const router = useRouter();
     const config = useRuntimeConfig();
-    const { authentication } = useApi();
     const user = useUser();
 
-    const isAuthenticated = computed(() => user.isAuthenticated).value;
+    const isAuthenticated = user.isAuthenticated;
 
     async function fetchUser(): Promise<any> {
-        const userData = await authentication.user(); // Llamada asíncrona para obtener datos del usuario
-        user.setUserData(userData); // Almacenar datos en el store
+        const userData = await apiAxios.get("/user");
+        user.setUserData(userData.data);
     }
 
     async function login(email: string, password: string, remember = true): Promise<any> {
         if (isAuthenticated === true) {
             return;
         }
+        const token = await apiAxios.post("/login", { email, password, remember });
+        user.setToken(token.data.token);
 
-        await authentication.login(email, password, remember);
         await fetchUser();
-
-        await router.push(config.public.homeUrl);
     }
 
     async function register(
@@ -28,12 +27,13 @@ export const useAuth = () => {
         password: string,
         password_confirmation: string
     ): Promise<any> {
-        await authentication.register(
+        const token = await apiAxios.post("/register",{
             name,
             email,
             password,
             password_confirmation
-        );
+        });
+        user.setToken(token.data.token);
         await fetchUser();
 
         await router.push(config.public.homeUrl);
@@ -44,7 +44,7 @@ export const useAuth = () => {
             return;
         }
 
-        await authentication.logout();
+        await apiAxios.post("/logout");
         user.logout();
 
         await router.push(config.public.loginUrl);

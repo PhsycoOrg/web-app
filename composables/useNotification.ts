@@ -1,5 +1,5 @@
-import { dispatchNotification } from '~/components/Notification';
-import type { NotificationType } from '~/components/Notification/interfaces/Notification.interface';
+import { dispatchNotification } from '@/components/Notification';
+import type { NotificationType } from '@/components/Notification/interfaces/Notification.interface';
 
 export const useNotification = () => {
   const add = (

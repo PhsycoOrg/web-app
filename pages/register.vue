@@ -58,7 +58,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { AuthErrors, Register } from '~/interfaces/AuthInterface';
+import type { AuthErrors, Register } from '@/interfaces/AuthInterface';
 
   definePageMeta({
     layout: 'auth',

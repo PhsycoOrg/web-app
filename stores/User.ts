@@ -1,11 +1,12 @@
 import { defineStore } from 'pinia'
-import type User from '~/api/models/User'
-import type { ProfileInformation } from '~/interfaces/User/ProfileInterface';
+import type User from '@/interfaces/User/User'
+import type { ProfileInformation } from '@/interfaces/User/ProfileInterface';
 
 export const useUserStore = defineStore('UserStore', {
     persist: true,
     state: (): User => ({
         id: undefined,
+        token: undefined,
         name: '',
         email: undefined,
         email_verified_at: undefined,
@@ -14,7 +15,8 @@ export const useUserStore = defineStore('UserStore', {
         has_profile_photo: false,
     }),
     getters: {
-        isAuthenticated: (state: User): boolean => state.email !== undefined,
+        isAuthenticated: (state: User): boolean => state.token !== undefined && state.token !== '',
+        getToken: (state: User): string => state.token!,
         getRole: (state: User): string => state.role??'user',
         getProfileInformation: (state: User) => {
             const data: ProfileInformation = {
@@ -38,7 +40,11 @@ export const useUserStore = defineStore('UserStore', {
             this.role = data.role;
             this.has_profile_photo = data.has_profile_photo;
         },
+        setToken(token: string): void {
+            this.token = token;
+        },
         logout (): void {
+            this.token = undefined;
             this.id = undefined;
             this.name = '';
             this.email = undefined;

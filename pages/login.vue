@@ -8,7 +8,7 @@
     <div>
       <label for="email" class="text-black font-medium leading-6 text-sm block">Correo electrónico</label>
       <div class="mt-2">
-        <input v-model="credentials.email" class="form-input w-full w-full" placeholder="Correo electrónico" id="email" type="email" required autocomplete="off" />
+        <input v-model="credentials.email" class="form-input w-full" placeholder="Correo electrónico" id="email" type="email" required autocomplete="off" />
         <small v-if="errs && errs.email" v-for="error in errs.email" class="text-red-600" >{{ error }}</small>
       </div>
     </div>
@@ -30,7 +30,7 @@
         </svg>
         Iniciando Sesión...
       </span>
-      <span v-else>Ingresar</span>
+      <span v-else>Ingresar Sesión</span>
     </button>
     <button class="btn-white w-full my-6">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 326667 333333" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd">
@@ -51,12 +51,13 @@
 </template>
 
 <script lang="ts" setup>
-  import type { AuthErrors, Login } from '~/interfaces/AuthInterface';
+  import type { AuthErrors, Login } from '@/interfaces/AuthInterface';
 
   definePageMeta({
     layout: 'auth',
     middleware: ["guest"],
   });
+
   useHead({
     title: 'Iniciar Sesión - Physco'
   });
@@ -67,8 +68,9 @@
   const statusMessage = ref('');
 
   const credentials: Login = reactive({
-    email: "",
-    password: ""
+    email: "psycho@hotmail.com",
+    password: "password",
+    remember: false
   });
 
   async function submit() {
@@ -77,7 +79,9 @@
     try {
       errs.value = {};
       await login(credentials.email, credentials.password, false);
+      
       navigateTo('/dashboard');
+
     } catch (err: any) {
       errs.value = err.errors;
     } finally {
