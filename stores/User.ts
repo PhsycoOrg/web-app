@@ -6,6 +6,7 @@ export const useUserStore = defineStore('UserStore', {
     persist: true,
     state: (): User => ({
         id: undefined,
+        token: undefined,
         name: '',
         email: undefined,
         email_verified_at: undefined,
