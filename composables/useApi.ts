@@ -37,8 +37,9 @@ export const useApi = () => {
     return await apiAxios.post("/user/get-professional-profile");
   }
 
-  async function updateProfessionalProfileData(title_specializations: string, license_number: number, specialization: string, categories: number[]): Promise<any> {
-    return await apiAxios.post("/user/update-professional-profile", {title_specializations, license_number, specialization, categories});
+  async function updateProfessionalProfileData(title_specializations: string, license_number: number, specialization: string,
+     is_public: boolean, categories: number[]): Promise<any> {
+    return await apiAxios.post("/user/update-professional-profile", {title_specializations, license_number, specialization, is_public, categories});
   }
 
   return {

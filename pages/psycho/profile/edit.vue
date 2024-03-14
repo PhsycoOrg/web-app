@@ -13,19 +13,33 @@
               </div>
               <div class="grow">
                 <div class="flex flex-col">
-                  <div class="flex items-center mb-2">
-                    <p class="text-secondary-inverse font-semibold text-[1.5rem] mr-1">
-                      {{ name }}
-                    </p>
-                    <span title="Perfil Verificado">
-                      <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                        class="w-6 h-6 text-purple-300">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                          d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" />
-                      </svg>
-                    </span>
+                  <div class="flex justify-between">
+                    <div class="flex items-center mb-2">
+                      <p class="text-secondary-inverse font-semibold text-[1.5rem] mr-1">
+                        {{ name }}
+                      </p>
+                      <span title="Perfil Verificado">
+                        <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                          class="w-6 h-6 text-purple-300">
+                          <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" />
+                        </svg>
+                      </span>
+                    </div>
+                    <div class="flex items-center gap-x-2">
+                      Perfil Público
+                      <Switch v-model="professionalData.public"
+                        :class="professionalData.public ? 'bg-black' : 'bg-gray-200'"
+                        class="relative inline-flex h-6 w-11 items-center rounded-full">
+                        <span class="sr-only">Enable notifications</span>
+                        <span :class="professionalData.public ? 'translate-x-6' : 'translate-x-1'"
+                          class="inline-block h-4 w-4 transform rounded-full bg-white transition"
+                        />
+                      </Switch>
+                    </div>
                   </div>
-                  <div class="pr-2 mb-4 w-full">
+                  
+                  <div class="mb-4 w-full">
                     <div>
                       <label for="title_specializations" class="text-black font-medium leading-6 text-sm flex items-center">
                         Título - Especialidad 
@@ -177,6 +191,7 @@
   import { Listbox, ListboxButton, ListboxOptions, ListboxOption } from '@headlessui/vue';
   import type { PsychoProfileError } from '@/interfaces/Errors';
   import PageLoader from '@/components/loaders/PageLoader.vue';
+  import { Switch } from '@headlessui/vue'
 
   definePageMeta({
     layout: 'app',
@@ -207,6 +222,7 @@
     license_number: null,
     specialization: null,
     categories: [],
+    public: false
   });
 
   onMounted(() => {
@@ -299,7 +315,7 @@
       const formDataCategories = formData.categories.map(category => category.id);
 
       await updateProfessionalProfileData(formData.title_specializations, formData.license_number as number,
-             formData.specialization as string, formDataCategories);
+             formData.specialization as string, formData.public, formDataCategories);
 
       navigateTo('/psycho/profile');
 

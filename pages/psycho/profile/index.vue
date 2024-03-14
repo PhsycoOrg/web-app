@@ -26,6 +26,12 @@
                             clip-rule="evenodd" />
                         </svg>
                       </span>
+                      <small v-if="professionalData.public" class="text-sm text-gray-600 font-normal">
+                        Perfil es público
+                      </small>
+                      <small v-else="professionalData.public" class="text-sm text-gray-600 font-normal">
+                        Perfil no es público
+                      </small>
                     </div>
                     <div class="pr-2 mb-4">
                       <p class="text-secondary-dark text-base mb-4">
@@ -145,6 +151,7 @@
     license_number: null,
     specialization: null,
     categories: [],
+    public: false
   });
 
   onMounted(() => {
