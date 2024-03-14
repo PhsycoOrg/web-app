@@ -1,3 +1,4 @@
+import type { Category, ProfessionalData } from "@/interfaces/Psycho/ProfessionalData";
 import type { Status } from "@/interfaces/Status";
 import apiAxios from "@/services/api";
 
@@ -30,12 +31,27 @@ export const useApi = () => {
     return await apiAxios.put("/user/change-password", {password, new_password, new_password_confirmation});
   }
 
+  async function getCategories(): Promise<any> {
+    return await apiAxios.get("/get-categories");
+  }
+
+  async function getProfessionalProfileData(): Promise<any> {
+    return await apiAxios.post("/user/get-professional-profile");
+  }
+
+  async function updateProfessionalProfileData(title_specializations: string, license_number: number, specialization: string, categories: number[]): Promise<any> {
+    return await apiAxios.post("/user/update-professional-profile", {title_specializations, license_number, specialization, categories});
+  }
+
   return {
     passwordForgot,
     passwordReset,
     emailSendVerification,
     updateProfile,
     deleteProfilePhoto,
-    updatePassword
+    updatePassword,
+    getCategories,
+    getProfessionalProfileData,
+    updateProfessionalProfileData
   }
 }
