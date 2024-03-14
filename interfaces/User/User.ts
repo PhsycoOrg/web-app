@@ -1,6 +1,6 @@
 export default interface User {
     id?: string;
-    token: undefined,
+    token?: string,
     name: string;
     email?: string;
     email_verified_at?: Date;

@@ -41,7 +41,7 @@
     title: 'Recupera tu contraseña - Physco'
   });
 
-  const { authentication } = useApi();
+  const { passwordForgot } = useApi();
   const error = ref(null);
   const statusMessage = ref('');
   const isButtonLoading = ref<boolean>(false);
@@ -53,8 +53,8 @@
     try {
       error.value = null;
 
-      await authentication.passwordForgot(email.value).then((res) => {
-        statusMessage.value = res.status;
+      await passwordForgot(email.value).then((res) => {
+        statusMessage.value = res.data.status;
         email.value = '';
       });
         

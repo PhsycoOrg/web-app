@@ -53,7 +53,7 @@
 <script lang="ts" setup>
 import type { AuthErrors } from '@/interfaces/AuthInterface';
 
-  const api = useApi();
+  const { updatePassword } = useApi();
   const notification = useNotification();
 
   const data = {
@@ -69,8 +69,11 @@ import type { AuthErrors } from '@/interfaces/AuthInterface';
     errs.value = {};
 
     try {
-      await api.profile.updatePassword(data.password, data.new_password, data.new_password_confirmation).then((res) => {
-        notification.add('Contraseña actualizada', res.status, 'success', true);
+      await updatePassword(data.password, data.new_password, data.new_password_confirmation).then((res) => {
+        data.password = '';
+        data.new_password = '';
+        data.new_password_confirmation = '';
+        notification.add('Contraseña actualizada', res.data.status, 'success', true);
       });  
     } catch (err: any) {
       errs.value = err.errors;

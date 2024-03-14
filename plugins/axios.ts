@@ -13,7 +13,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     });
     return {
         provide: {
-            api: api,
+            apiAxios: api,
         },
     };
 })

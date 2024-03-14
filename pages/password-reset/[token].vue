@@ -15,6 +15,7 @@
       <label for="password" class="text-black font-medium leading-6 text-sm block">Contraseña</label>
       <div class="mt-2">
         <input v-model="data.password" class="form-input w-full" placeholder="Contraseña" type="password" id="password" required autocomplete="off" />
+        <small v-if="errs && errs.password" v-for="error in errs.password" class="text-red-600 block" >{{ error }}</small>
       </div>
     </div>
     <div class="my-4">
@@ -43,7 +44,7 @@
 </template>
 
 <script lang="ts" setup>
-  import type { ResetPassword } from '@/interfaces/AuthInterface';
+  import type { AuthErrors, ResetPassword } from '@/interfaces/AuthInterface';
 
   definePageMeta({
     layout: 'auth',
@@ -57,10 +58,10 @@
   const router = useRoute();
   const { email } = router.query;
   const { token } = router.params;
-  const { authentication } = useApi();
-  const error = ref(null);
+  const { passwordReset } = useApi();
+  const errs = ref<AuthErrors>({});
   const isButtonLoading = ref<boolean>(false);
-    const statusMessage = ref('');
+  const statusMessage = ref('');
 
   const data: ResetPassword = reactive({
     email: '',
@@ -78,11 +79,11 @@
     isButtonLoading.value = true;
 
     try {
-        error.value = null;
+      errs.value = {};
 
-        await authentication.passwordReset(data.token, data.email, data.password, data.password_confirmation)
+        await passwordReset(data.token, data.email, data.password, data.password_confirmation)
                       .then((res) => {
-                        statusMessage.value = res.status;
+                        statusMessage.value = res.data.status;
                         data.email = '';
                         data.password = '';
                         data.password_confirmation;
@@ -90,9 +91,11 @@
                         setTimeout(() => {
                           navigateTo('/login');
                         }, 3000)
+                      }).catch((err: any) => {
+                        errs.value = err.errors;
                       });     
     } catch (err: any) {
-      error.value = err.errors;
+      errs.value = err.errors;
     } finally {
       isButtonLoading.value = false;
     }

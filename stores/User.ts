@@ -40,7 +40,11 @@ export const useUserStore = defineStore('UserStore', {
             this.role = data.role;
             this.has_profile_photo = data.has_profile_photo;
         },
+        setToken(token: string): void {
+            this.token = token;
+        },
         logout (): void {
+            this.token = undefined;
             this.id = undefined;
             this.name = '';
             this.email = undefined;
