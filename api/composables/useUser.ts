@@ -1,4 +1,4 @@
-import type User from "../models/User";
+import type User from "../../interfaces/User/User";
 
 export const useUser = () => {
     const store = useUserStore();

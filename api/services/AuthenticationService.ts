@@ -1,4 +1,4 @@
-import type User from "../models/User";
+import type User from "../../interfaces/User/User";
 import { ApiServiceBase } from "./ApiServiceBase";
 
 export default class AuthService extends ApiServiceBase {

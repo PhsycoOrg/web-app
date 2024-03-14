@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import type User from '@/api/models/User'
+import type User from '@/interfaces/User/User'
 import type { ProfileInformation } from '@/interfaces/User/ProfileInterface';
 
 export const useUserStore = defineStore('UserStore', {
