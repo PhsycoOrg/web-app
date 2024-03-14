@@ -47,9 +47,9 @@
 </template>
 
 <script lang="ts" setup>
-  import type { Menu } from '~/interfaces/MenuInterface';
-  import MenuItem from '~/components/layouts/app/SidebarMenuItem.vue';
-  import { menus } from '~/data/Menu';
+  import type { Menu } from '@/interfaces/MenuInterface';
+  import MenuItem from '@/components/layouts/app/SidebarMenuItem.vue';
+  import { menus } from '@/data/Menu';
 
   const user = useUser();
   const isMenuShow = ref<boolean>(false);

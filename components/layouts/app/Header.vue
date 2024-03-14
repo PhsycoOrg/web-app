@@ -70,7 +70,7 @@
 
 <script lang="ts" setup>
   import { TransitionRoot } from '@headlessui/vue'
-  import useDetectOutsideClick from '~/composables/useDetectOutsideClick'
+  import useDetectOutsideClick from '@/composables/useDetectOutsideClick'
 
   const { $event } = useNuxtApp();
   const { logout } = useAuth();

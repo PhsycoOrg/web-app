@@ -43,7 +43,7 @@
 </template>
 
 <script lang="ts" setup>
-  import type { ResetPassword } from '~/interfaces/AuthInterface';
+  import type { ResetPassword } from '@/interfaces/AuthInterface';
 
   definePageMeta({
     layout: 'auth',

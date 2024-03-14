@@ -51,7 +51,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { AuthErrors } from '~/interfaces/AuthInterface';
+import type { AuthErrors } from '@/interfaces/AuthInterface';
 
   const api = useApi();
   const notification = useNotification();

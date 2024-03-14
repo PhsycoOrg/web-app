@@ -1,4 +1,4 @@
-import type { Menu } from '~/interfaces/MenuInterface';
+import type { Menu } from '@/interfaces/MenuInterface';
 
 const pshycoMenu: Menu[] = [
     {

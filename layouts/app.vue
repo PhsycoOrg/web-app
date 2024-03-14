@@ -20,9 +20,9 @@
   import '@fontsource/poppins/500.css';
   import '@fontsource/poppins/600.css';
 
-  import { NotificationProvider } from '~/components/Notification';
-  import Sidebar from '~/components/layouts/app/Sidebar.vue';
-  import Header from '~/components/layouts/app/Header.vue';
+  import { NotificationProvider } from '@/components/Notification';
+  import Sidebar from '@/components/layouts/app/Sidebar.vue';
+  import Header from '@/components/layouts/app/Header.vue';
 </script>
 
 <style></style>

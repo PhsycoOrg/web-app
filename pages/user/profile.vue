@@ -6,8 +6,8 @@
   <UpdatePassword />
 </template>
 <script lang="ts" setup>
-  import Information from '~/components/user/profile/Information.vue';
-  import UpdatePassword from '~/components/user/profile/UpdatePassword.vue';
+  import Information from '@/components/user/profile/Information.vue';
+  import UpdatePassword from '@/components/user/profile/UpdatePassword.vue';
 
   definePageMeta({
     layout: 'app',

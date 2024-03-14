@@ -88,8 +88,8 @@
 </template>
 
 <script lang="ts" setup>
-  import type { ProfileErrors } from '~/interfaces/AuthInterface';
-  import type {ProfileInformation} from '~/interfaces/User/ProfileInterface';
+  import type { ProfileErrors } from '@/interfaces/AuthInterface';
+  import type {ProfileInformation} from '@/interfaces/User/ProfileInterface';
 
   const user = useUser();
   const { authentication } = useApi();

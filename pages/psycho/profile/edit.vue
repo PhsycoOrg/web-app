@@ -172,9 +172,9 @@
 </template>
 
 <script lang="ts" setup>
-  import type { Category, ProfessionalData } from '~/interfaces/Psycho/ProfessionalData';
+  import type { Category, ProfessionalData } from '@/interfaces/Psycho/ProfessionalData';
   import { Listbox, ListboxButton, ListboxOptions, ListboxOption } from '@headlessui/vue';
-  import type { PsychoProfileError } from '~/interfaces/Errors';
+  import type { PsychoProfileError } from '@/interfaces/Errors';
 
   definePageMeta({
     layout: 'app',
