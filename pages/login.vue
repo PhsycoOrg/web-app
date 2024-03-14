@@ -8,7 +8,7 @@
     <div>
       <label for="email" class="text-black font-medium leading-6 text-sm block">Correo electrónico</label>
       <div class="mt-2">
-        <input v-model="credentials.email" class="form-input w-full w-full" placeholder="Correo electrónico" id="email" type="email" required autocomplete="off" />
+        <input v-model="credentials.email" class="form-input w-full" placeholder="Correo electrónico" id="email" type="email" required autocomplete="off" />
         <small v-if="errs && errs.email" v-for="error in errs.email" class="text-red-600" >{{ error }}</small>
       </div>
     </div>
