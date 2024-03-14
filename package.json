@@ -24,8 +24,11 @@
     "@fontsource/poppins": "^5.0.8",
     "@headlessui/vue": "^1.7.18",
     "@pinia/nuxt": "^0.5.1",
+    "laravel-echo": "^1.15.3",
     "mitt": "^3.0.1",
+    "peerjs": "^1.5.2",
     "pinia": "^2.1.7",
+    "pusher-js": "^8.4.0-rc2",
     "uuid": "^9.0.1"
   }
 }
