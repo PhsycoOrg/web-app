@@ -24,6 +24,7 @@
     "@fontsource/poppins": "^5.0.8",
     "@headlessui/vue": "^1.7.18",
     "@pinia/nuxt": "^0.5.1",
+    "axios": "^1.6.7",
     "mitt": "^3.0.1",
     "pinia": "^2.1.7",
     "uuid": "^9.0.1"
