@@ -1,5 +1,3 @@
-import type { Category, ProfessionalData } from "@/interfaces/Psycho/ProfessionalData";
-import type { Status } from "@/interfaces/Status";
 import apiAxios from "@/services/api";
 
 export const useApi = () => {

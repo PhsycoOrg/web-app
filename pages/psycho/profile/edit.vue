@@ -1,7 +1,8 @@
 <template>
   <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-    <div class="col-span-2">
+    <div class="col-span-2 relative">
       <h2 class="text-xl font-semibold">Editar Perfil Profesional</h2>
+      <PageLoader v-if="isDataLoading" text="Obteniendo la información de tu Perfil" />
       <div class="mt-4 grid grid-cols-1 gap-6">
         <div class="bg-white border border-slate-200 p-4 rounded-lg">
           <div class="p-3 pt-3 lg:px-9 lg:pt-9 flex-auto min-h-[70px] pb-0 bg-transparent">
@@ -157,7 +158,7 @@
                           </svg>
                           Actualizando Perfil...
                         </span>
-                        <span v-else>Acttualizar</span>
+                        <span v-else>Acttualizar Perfil</span>
                       </button>
                     </div>
                   </div>
@@ -175,6 +176,7 @@
   import type { Category, ProfessionalData } from '@/interfaces/Psycho/ProfessionalData';
   import { Listbox, ListboxButton, ListboxOptions, ListboxOption } from '@headlessui/vue';
   import type { PsychoProfileError } from '@/interfaces/Errors';
+  import PageLoader from '@/components/loaders/PageLoader.vue';
 
   definePageMeta({
     layout: 'app',
@@ -191,6 +193,7 @@
 
   const categories = ref<Category[]>([]);
   const isButtonLoading = ref<boolean>(false);
+  const isDataLoading = ref<boolean>(false);
   const { name, profile_photo_url } = user;
   const errs = ref<PsychoProfileError>({
     title_specializations: [],
@@ -217,8 +220,10 @@
   });
 
   const getProfessionalData = (async () => {
+    isDataLoading.value = true;
     const response = await getProfessionalProfileData();
-      professionalData.value = response.data;
+    professionalData.value = response.data;
+    isDataLoading.value = false;
   });
 
   const handleAddCategory = ((category: Category) => {
