@@ -43,7 +43,10 @@
     time_between_appointments: 0,
     automatic_confirmation: false,
     confirmation_advance_notice: 0,
-    max_daily_appointments: 0,
+    max_daily_appointments: {
+      active: true,
+      quantity: 10
+    },
     unavailable_days: [],
     schedule: {
       monday: {

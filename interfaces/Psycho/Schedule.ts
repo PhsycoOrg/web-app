@@ -4,7 +4,7 @@ export interface ProfessionalConfig {
     time_between_appointments: number | null,
     automatic_confirmation: false,
     confirmation_advance_notice: number,
-    max_daily_appointments: number,
+    max_daily_appointments: Object,
     schedule: ProfessionalSchedule,
     unavailable_days: string[],
 }

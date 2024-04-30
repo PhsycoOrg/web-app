@@ -24,7 +24,7 @@
               </div>
               <div class="w-1/2">
                 <label for="email" class="text-black text-left font-medium leading-6 text-sm block">Fin</label>
-                <input type="time" class="form-input" v-model="time.end_time">
+                <input type="time" class="form-input" :min="`${formatTime(time.start_time)}`" v-model="time.end_time">
               </div>
               <button @click="handleRemoveDayRangeTime(index, timeIndex)"
                 class="h-10 mt-6 p-1.5 border border-red-700 rounded-md text-red-700 hover:text-white hover:bg-red-700">
@@ -73,7 +73,21 @@
     type ObjectKey = keyof typeof data.schedule;
     const key = day as ObjectKey;
     data.schedule[key].time_ranges.splice(time, 1);
-  })
+  });
+
+  const formatTime = ((time: string) => {
+    if (!time || typeof time !== 'string' || !time.includes(':')) {
+        return '';
+      }
+
+      let [hours, minutes] = time.split(':');
+
+      hours = hours.padStart(2, '0');
+      minutes = minutes.padStart(2, '0');
+
+      // Devolver la hora formateada
+      return `${hours}:${minutes}`;
+    });
 </script>
 
 <style></style>
